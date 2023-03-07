@@ -47,11 +47,13 @@ section.card {
   display: none;
 }
 
-input:invalid[custom-focused="true"] ~ .error-input {
+input[custom-focused="true"] ~ .error-input,
+form[custom-submit="true"] input ~ .error-input {
   display: flex;
   align-items: center;
 }
 
-input:invalid[custom-focused="true"] ~ .input-help {
+input[custom-focused="true"] ~ .input-help,
+form[custom-submit="true"] input[custom-focused="true"] ~ .input-help {
   display: none;
 }

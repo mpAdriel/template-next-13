@@ -1,44 +1,56 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+// resources
+import { useActions, useStore } from '@/modules/store/store'
+import { setLogin, loginValidation } from '@/modules/login/slices/LoginSlice'
+// components
 import PrivateRouter from '@/includes/PrivateRouter'
 import RootLayout from '@/includes/RootLayout'
-import { DTOLogin } from '@/modules/login/DTO'
-import Input from '@/components/Input'
-import { password } from '@/modules/form/regex'
+import { Form, Input } from '@/components'
 
 export default function Login () {
-  const [dataLogin, setDataLogin] = useState<DTOLogin>({ email: '', password: '' })
+  const { email, password, errors } = useStore(state => state.LoginState)
+  const dispatch = useActions()
+
+  function apiLogin () {
+    dispatch(loginValidation())
+    // const error = loginValidation(values)
+    // const isError = Object.keys(error).length > 0
+
+    // if (isError) {
+    //   console.log('error', error)
+    // } else { console.log('values', values) }
+  }
 
   return (
     <PrivateRouter>
       <RootLayout title='Login'>
 
         <section className='card card-glass' style={{ width: '500px' }}>
-          <form onSubmit={(e) => apiLogin(e, dataLogin)}>
+          <Form onsubmit={() => apiLogin()}>
             <div className='mb-3'>
               <label htmlFor='email' className='form-label'>Email address</label>
               <Input
-                id='email'
-                onChange={(e) => setDataLogin({ ...dataLogin, [e.target.id]: e.target.value })}
-                pattern='adriel'
-                errorMessage='No eres Adriel'
-                required
+                name='email'
+                onChange={(e) => dispatch(setLogin({ prop: e.target.name, value: e.target.value }))}
+                value={email}
+                validator={() => dispatch(loginValidation())}
+                messageError={errors.email?.error}
               />
             </div>
             <div className='mb-3'>
               <label htmlFor='exampleInputPassword1' className='form-label'>Password</label>
               <Input
-                id='password'
+                name='password'
+                onChange={(e) => dispatch(setLogin({ prop: e.target.name, value: e.target.value }))}
+                value={password}
                 type='password'
-                onChange={(e) => setDataLogin({ ...dataLogin, [e.target.id]: e.target.value })}
-                pattern={password + ''}
-                errorMessage='Mínimo 8 carácteres, al menos una letra mayúscula y una letra minúscula (puede contener carácteres especiales)'
-                required
                 help='Mínimo 8 carácteres, al menos una letra mayúscula y una letra minúscula (puede contener carácteres especiales)'
               />
 
             </div>
 
-            <p>
+            <p className='d-none'>
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis deserunt dolor, dignissimos reiciendis neque voluptate dolores molestiae suscipit facilis atque sint aliquam esse nisi! A cum provident corporis maiores omnis?
               Aspernatur, corporis esse voluptates facilis doloremque assumenda quaerat tempore eaque dolores, veritatis provident laborum recusandae repellat libero aut nihil placeat voluptatum veniam pariatur distinctio doloribus harum sint alias corrupti! Ad!
               Repellat culpa ab veritatis, doloremque iure ad, labore quod dolore molestiae numquam mollitia. Quod dolores qui suscipit dolorum quae ea, possimus dolorem laboriosam illum eum distinctio sequi, a architecto quasi!
@@ -54,15 +66,10 @@ export default function Login () {
             <div className='d-grid gap-2'>
               <button type='submit' className='btn btn-primary btn-block'>Submit</button>
             </div>
-          </form>
+          </Form>
         </section>
 
       </RootLayout>
     </PrivateRouter>
   )
-}
-
-function apiLogin (e: React.FormEvent, values: DTOLogin) {
-  e.preventDefault()
-  console.log('values', values)
 }
