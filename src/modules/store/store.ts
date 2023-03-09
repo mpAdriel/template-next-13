@@ -24,7 +24,8 @@ export const store = configureStore({
   middleware: [thunk]
 })
 
-export const useActions: () => typeof store.dispatch = useDispatch
-export const useStore: TypedUseSelectorHook<
-  ReturnType<typeof store.getState>
-> = useSelector
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
+export const useActions: () => AppDispatch = useDispatch
+export const useStore: TypedUseSelectorHook<RootState> = useSelector

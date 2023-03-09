@@ -7,6 +7,7 @@ import { setLogin, loginValidation } from '@/modules/login/slices/LoginSlice'
 import PrivateRouter from '@/includes/PrivateRouter'
 import RootLayout from '@/includes/RootLayout'
 import { Form, Input } from '@/components'
+import { testMethodThunk } from '@/modules/login/slices/LoginActions'
 
 export default function Login () {
   const { email, password, errors } = useStore(state => state.LoginState)
@@ -29,6 +30,7 @@ export default function Login () {
         <section className='card card-glass' style={{ width: '500px' }}>
           <Form onsubmit={() => apiLogin()}>
             <div className='mb-3'>
+              {/* //TODO: hacer un componente que contenga también el label, y un prop para añadir un contenedor con clase custom */}
               <label htmlFor='email' className='form-label'>Email address</label>
               <Input
                 name='email'
@@ -65,6 +67,7 @@ export default function Login () {
 
             <div className='d-grid gap-2'>
               <button type='submit' className='btn btn-primary btn-block'>Submit</button>
+              <button type='button' className='btn btn-primary btn-block' onClick={() => dispatch(testMethodThunk('test'))}>Test</button>
             </div>
           </Form>
         </section>
