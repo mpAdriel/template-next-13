@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { InterfaceLogin, TypePayloadSetLogin } from '../Interfaces'
-import { actionSetLogin, actionLoginFormValidation } from './LoginActions'
 
 const INITIAL_STATE = {
   email: '',
@@ -12,13 +11,13 @@ export const LoginSlice = createSlice({
   name: 'LoginSlice',
   initialState: INITIAL_STATE,
   reducers: {
-    setLogin: (state, action: TypePayloadSetLogin) => actionSetLogin(state, action),
-    loginValidation: (state) => actionLoginFormValidation(state)
+    setLogin: (state, action: TypePayloadSetLogin) => {
+      return { ...state, [action.payload.prop]: action.payload.value }
+    }
   }
 })
 
 export const {
-  setLogin,
-  loginValidation
+  setLogin
 } = LoginSlice.actions
 export default LoginSlice.reducer

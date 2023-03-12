@@ -1,11 +1,13 @@
-import { AnyAction, Dispatch, EmptyObject } from '@reduxjs/toolkit'
-import { TypedUseSelectorHook } from 'react-redux'
+import { AnyAction, Dispatch, EmptyObject, ThunkDispatch } from '@reduxjs/toolkit'
 import { PersistPartial } from 'redux-persist/es/persistReducer'
 
 // slices
 import { InterfaceLogin } from '../login/Interfaces'
 
-export type TypeDispatch = Dispatch<AnyAction>
-export type TypeStore = TypedUseSelectorHook<EmptyObject & {
+export type TypeDispatch = ThunkDispatch<EmptyObject & {
   LoginState: InterfaceLogin;
-} & PersistPartial>
+} & PersistPartial, undefined, AnyAction> & Dispatch<AnyAction>
+
+export type TypeStore = () => {
+  LoginState: InterfaceLogin,
+}

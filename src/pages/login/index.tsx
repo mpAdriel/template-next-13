@@ -1,13 +1,16 @@
 import React from 'react'
 
+// actions
+import { loginValidation } from '@/modules/login/slices/LoginActions'
+// api
+import { apiPostLogin } from '@/modules/login/api/postLogin'
 // resources
 import { useActions, useStore } from '@/modules/store/store'
-import { setLogin, loginValidation } from '@/modules/login/slices/LoginSlice'
+import { setLogin } from '@/modules/login/slices/LoginSlice'
 // components
 import PrivateRouter from '@/includes/PrivateRouter'
 import RootLayout from '@/includes/RootLayout'
 import { Form, Input } from '@/components'
-import { testMethodThunk } from '@/modules/login/slices/LoginActions'
 
 export default function Login () {
   const { email, password, errors } = useStore(state => state.LoginState)
@@ -67,7 +70,7 @@ export default function Login () {
 
             <div className='d-grid gap-2'>
               <button type='submit' className='btn btn-primary btn-block'>Submit</button>
-              <button type='button' className='btn btn-primary btn-block' onClick={() => dispatch(testMethodThunk('test'))}>Test</button>
+              <button type='button' className='btn btn-primary btn-block' onClick={() => dispatch(apiPostLogin())}>Api post login</button>
             </div>
           </Form>
         </section>

@@ -1,31 +1,19 @@
 
 // interfaces
 import { InterfaceValidateUnique } from '@/modules/form/Interfaces'
-import { TypePayloadSetLogin, TypeStateLogin } from '../Interfaces'
 // resources
 import { loginFormValidation } from '../Validations'
 import { scrollToError } from '@/modules/form/Utils'
 // actions
 import { setLogin } from './LoginSlice'
+import { TypeDispatch, TypeStore } from '@/modules/store/Interfaces'
 
-export const actionLoginFormValidation = (state: TypeStateLogin) => {
-  const errors = loginFormValidation({ email: state.email, password: state.password, errors: state.errors })
+export const loginValidation = () => (dispatch: TypeDispatch, getState: TypeStore) => {
+  const { email, password } = getState().LoginState
+  const errors = loginFormValidation({ email, password })
 
   const valuesErrors = Object.values(errors) as Array<InterfaceValidateUnique>
   if (valuesErrors.length > 0) scrollToError(valuesErrors[0])
 
-  return { ...state, errors }
-}
-
-export const actionSetLogin = (
-  state: TypeStateLogin,
-  action: TypePayloadSetLogin
-) => {
-  return { ...state, [action.payload.prop]: action.payload.value }
-}
-
-export const testMethodThunk = (prop:string) => (dispatch, getState) => {
-  console.log('prop', prop)
-  console.log('getState()', getState())
-  dispatch(setLogin({ prop: 'email', value: 'adriel@gmail.com' }))
+  dispatch(setLogin({ prop: 'errors', value: errors }))
 }
