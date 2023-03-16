@@ -1,19 +1,15 @@
-import { PayloadAction } from '@reduxjs/toolkit'
-import { WritableDraft } from 'immer/dist/internal'
 
 // resources
-import { InterfaceValidateUnique } from '../form/Interfaces'
+import { ISingleError } from '../form/Interfaces'
 
-export interface InterfaceLoginError {
-  email?: InterfaceValidateUnique,
-  password?: InterfaceValidateUnique
+export interface ILoginError {
+  email?: ISingleError,
+  password?: ISingleError
 }
 
-export interface InterfaceLogin {
+export interface ILogin {
   email: string,
   password: string,
-  errors: InterfaceLoginError,
+  errors: ILoginError,
+  isLoading: boolean,
 }
-
-export type TypeStateLogin = WritableDraft<InterfaceLogin>
-export type TypePayloadSetLogin = PayloadAction<{prop: string, value: any}>

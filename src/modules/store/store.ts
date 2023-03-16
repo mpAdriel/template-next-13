@@ -26,8 +26,8 @@ export const store = configureStore({
   }).concat(logger)
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+export type TRootState = ReturnType<typeof store.getState>
+export type TAppDispatch = typeof store.dispatch
 
-export const useActions: () => AppDispatch = useDispatch
-export const useStore: TypedUseSelectorHook<RootState> = useSelector
+export const useActions: () => TAppDispatch = useDispatch
+export const useStore: TypedUseSelectorHook<TRootState> = useSelector

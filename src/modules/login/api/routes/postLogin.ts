@@ -1,0 +1,40 @@
+
+import { api } from '@/modules/api/api'
+
+// interfaces
+import { TDispatch, TStore } from '@/modules/store/Interfaces'
+import { EUrls, IGetUser } from '../Interfaces'
+// actions
+import { setLogin } from '../../slices/LoginSlice'
+import { loginValidation } from '../../slices/LoginActions'
+
+export const apiPostLogin = () => async (dispatch: TDispatch, getState: TStore) => {
+  const { isError } = await dispatch(loginValidation())
+  if (isError) return
+
+  await dispatch(setLogin({ prop: 'isLoading', value: true }))
+  await api<IGetUser>(
+    {
+      verb: 'GET',
+      configVerb: { url: EUrls.postLogin.replace('<userId>', '1') },
+      callback: {
+        success: async (response) => {
+          console.log('apiPostLogin - Success', response)
+          dispatch(setLogin({ prop: 'email', value: response?.email }))
+          await dispatch(setLogin({ prop: 'isLoading', value: false }))
+          // setTimeout(() => {
+          //   setInterval(async () => {
+          //     await dispatch(apiPostRefreshToken())
+          //   }, 60000)
+          // }, 60000)
+        },
+        error: async (response) => {
+          console.log('apiPostLogin - Error', response)
+          await dispatch(setLogin({ prop: 'isLoading', value: false }))
+        }
+      },
+      dispatch,
+      getState
+    }
+  )
+}

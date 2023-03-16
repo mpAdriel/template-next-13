@@ -1,4 +1,8 @@
-export interface ResponseJSONPlaceholder {
+export enum EUrls {
+  postLogin = 'https://jsonplaceholder.typicode.com/users/<userId>',
+}
+
+export interface IGetUser {
   id: Number,
   name: string,
   username: string,

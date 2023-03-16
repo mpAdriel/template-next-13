@@ -1,9 +1,9 @@
 import { validatePassword, validateEmail } from '../form/Validations'
 import { DTOLogin } from './api/DTO'
-import { InterfaceLoginError } from './Interfaces'
+import { ILoginError } from './Interfaces'
 
 export const loginFormValidation = (values: DTOLogin) => {
-  const errors = {} as InterfaceLoginError
+  const errors = {} as ILoginError
 
   const email = validateEmail(values.email)
   if (email) errors.email = { name: 'email', error: email }

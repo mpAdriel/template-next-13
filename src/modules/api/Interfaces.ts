@@ -1,42 +1,52 @@
 import { AxiosRequestConfig } from 'axios'
 
-export type TypeVerbs = {
-  GET: 'GET',
-  POST: 'POST',
-  PUT: 'PUT',
-  DEL: 'DEL',
-  PATCH: 'PATCH',
-}
+// interfaces
+import { TDispatch, TStore } from '../store/Interfaces'
 
-export type TypeGet = {
+export type TVerbs = 'GET' | 'POST' | 'PUT' | 'DEL' | 'PATCH'
+
+export interface IGet {
   url: string,
   config?: AxiosRequestConfig<any> | undefined
 }
 
-export type TypePost = {
+export interface IPost {
   url: string,
   data?: any,
   config?: AxiosRequestConfig<any> | undefined
 }
 
-export type TypeDelete = {
+export interface IDelete {
   url: string,
   config?: AxiosRequestConfig<any> | undefined
 }
 
-export type TypePut = {
-  url: string,
-  data?: any,
-  config?: AxiosRequestConfig<any> | undefined
-}
-
-export type TypePatch = {
+export interface IPut {
   url: string,
   data?: any,
   config?: AxiosRequestConfig<any> | undefined
 }
 
-export type TypeCallBack<T> = {
-  success: (response: T) => any
-  error: (response: T) => any
+export interface IPatch {
+  url: string,
+  data?: any,
+  config?: AxiosRequestConfig<any> | undefined
 }
+
+export type TIVerbs = IGet | IPost | IPut | IDelete | IPatch
+
+export interface ICallBack<T> {
+  success: (response?: T) => any
+  error: (response?: T | any) => any
+}
+
+export type TTags =
+  'ANY' | 'REFRESH_TOKEN' | 'FROM_REFRESH_TOKEN'
+
+export interface IApi<T> {
+    verb: TVerbs,
+    configVerb: TIVerbs,
+    callback: ICallBack<T>,
+    dispatch: TDispatch, getState: TStore,
+    tag?: TTags
+  }

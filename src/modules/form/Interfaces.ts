@@ -1,4 +1,4 @@
-export interface InterfaceValidateUnique {
+export interface ISingleError {
   name: string,
   error: string
 }

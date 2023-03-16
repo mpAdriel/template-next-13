@@ -9,7 +9,6 @@ export default function Input (
     id,
     name,
     autoComplete = 'off',
-    required = false,
     validator,
     messageError,
     help,
@@ -23,7 +22,6 @@ export default function Input (
     id?: string,
     name: string,
     autoComplete?: string,
-    required?: boolean,
     validator?: () => any,
     messageError?: string,
     help?: string
@@ -55,7 +53,7 @@ export default function Input (
         autoComplete={autoComplete}
         custom-focused={focused + ''}
       />
-      {help && <div className='form-text input-help'>{help}</div>}
+      {(help && !messageError) && <div className='form-text input-help'>{help}</div>}
     </>
   )
 
@@ -69,6 +67,7 @@ export default function Input (
             <div>{messageError}</div>
           </div>
         )}
+        {(help && messageError) && <div className='form-text input-help'>{help}</div>}
       </div>
     )
   } else return input

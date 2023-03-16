@@ -3,7 +3,7 @@ import React from 'react'
 // actions
 import { loginValidation } from '@/modules/login/slices/LoginActions'
 // api
-import { apiPostLogin } from '@/modules/login/api/postLogin'
+import { apiPostLogin } from '@/modules/login/api/routes/postLogin'
 // resources
 import { useActions, useStore } from '@/modules/store/store'
 import { setLogin } from '@/modules/login/slices/LoginSlice'
@@ -13,17 +13,11 @@ import RootLayout from '@/includes/RootLayout'
 import { Form, Input } from '@/components'
 
 export default function Login () {
-  const { email, password, errors } = useStore(state => state.LoginState)
+  const { email, password, errors, isLoading } = useStore(state => state.LoginState)
   const dispatch = useActions()
 
-  function apiLogin () {
-    dispatch(loginValidation())
-    // const error = loginValidation(values)
-    // const isError = Object.keys(error).length > 0
-
-    // if (isError) {
-    //   console.log('error', error)
-    // } else { console.log('values', values) }
+  async function apiLogin () {
+    await dispatch(apiPostLogin())
   }
 
   return (
@@ -49,10 +43,11 @@ export default function Login () {
                 name='password'
                 onChange={(e) => dispatch(setLogin({ prop: e.target.name, value: e.target.value }))}
                 value={password}
+                validator={() => dispatch(loginValidation())}
+                messageError={errors.password?.error}
                 type='password'
                 help='Mínimo 8 carácteres, al menos una letra mayúscula y una letra minúscula (puede contener carácteres especiales)'
               />
-
             </div>
 
             <p className='d-none'>
@@ -69,8 +64,9 @@ export default function Login () {
             </p>
 
             <div className='d-grid gap-2'>
-              <button type='submit' className='btn btn-primary btn-block'>Submit</button>
-              <button type='button' className='btn btn-primary btn-block' onClick={() => dispatch(apiPostLogin())}>Api post login</button>
+              <button type='submit' className={`btn btn-primary btn-block ${isLoading ? 'disabled btn-loader' : ''}`}>
+                <span className='btn-text'>Submit</span>
+              </button>
             </div>
           </Form>
         </section>
