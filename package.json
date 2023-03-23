@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "pro": "next start",
     "build": "next build",
-    "start": "next start",
+    "build:dev": "env-cmd -f .env.development next build && next export",
+    "build:pro": "env-cmd -f .env.production next build && next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -30,6 +32,7 @@
     "@types/redux-logger": "^3.0.9",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",
+    "env-cmd": "^10.1.0",
     "eslint": "^8.36.0",
     "standard": "^17.0.0",
     "typescript": "^4.9.5"

@@ -13,6 +13,7 @@ export const api = async <T>(props: IApi<T>) => {
   if (config?.headers === undefined) {
     config = {
       ...config,
+      baseURL: process.env.BASE_URL_API || '',
       headers: {
         Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json'

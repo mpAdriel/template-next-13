@@ -1,5 +1,5 @@
 export enum EUrls {
-  postLogin = 'https://jsonplaceholder.typicode.com/users/<userId>',
+  postLogin = 'users/<userId>',
 }
 
 export interface IGetUser {
