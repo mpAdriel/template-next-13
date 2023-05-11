@@ -1,6 +1,5 @@
-export enum EUrls {
-  postLogin = 'users/<userId>',
-}
+
+export const UrlPostLogin = 'users/<userId>'
 
 export interface IGetUser {
   id: Number,

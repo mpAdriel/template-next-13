@@ -1,12 +1,12 @@
 import React from 'react'
 
-// actions
-import { loginValidation } from '@/modules/login/slices/LoginActions'
 // api
 import { apiPostLogin } from '@/modules/login/api/routes/postLogin'
 // resources
-import { useActions, useStore } from '@/modules/store/store'
 import { setLogin } from '@/modules/login/slices/LoginSlice'
+import { useStore } from '@/modules/store/useStore'
+import { useActions } from '@/modules/store/useActions'
+import { loginValidation } from '@/modules/login/slices/actions/loginValidation'
 // components
 import PrivateRouter from '@/includes/PrivateRouter'
 import RootLayout from '@/includes/RootLayout'
@@ -46,7 +46,7 @@ export default function Login () {
                 validator={() => dispatch(loginValidation())}
                 messageError={errors.password?.error}
                 type='password'
-                help='Mínimo 8 carácteres, al menos una letra mayúscula y una letra minúscula (puede contener carácteres especiales)'
+                help='Mínimo 8 carácteres, al menos una letra mayúscula, una letra minúscula y un número (puede contener carácteres especiales)'
               />
             </div>
 

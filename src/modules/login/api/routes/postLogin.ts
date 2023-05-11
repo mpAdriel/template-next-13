@@ -2,11 +2,12 @@
 import { api } from '@/modules/api/api'
 
 // interfaces
-import { TDispatch, TStore } from '@/modules/store/Interfaces'
-import { EUrls, IGetUser } from '../Interfaces'
+import { TDispatch } from '@/modules/store/interfaces/TDispatch'
+import { TStore } from '@/modules/store/interfaces/TStore'
+import { IGetUser, UrlPostLogin } from '../interfaces/GetUser'
 // actions
 import { setLogin } from '../../slices/LoginSlice'
-import { loginValidation } from '../../slices/LoginActions'
+import { loginValidation } from '../../slices/actions/loginValidation'
 
 export const apiPostLogin = () => async (dispatch: TDispatch, getState: TStore) => {
   const { isError } = await dispatch(loginValidation())
@@ -16,7 +17,7 @@ export const apiPostLogin = () => async (dispatch: TDispatch, getState: TStore) 
   await api<IGetUser>(
     {
       verb: 'GET',
-      configVerb: { url: EUrls.postLogin.replace('<userId>', '1') },
+      configVerb: { url: UrlPostLogin.replace('<userId>', '1') },
       callback: {
         success: async (response) => {
           console.log('apiPostLogin - Success', response)

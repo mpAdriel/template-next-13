@@ -4,7 +4,7 @@ import { AxiosResponse } from 'axios'
 import { api } from './api'
 import { apiPostRefreshToken } from '../login/api/routes/postRefreshToken'
 // interfaces
-import { IApi } from './Interfaces'
+import { IApi } from './interfaces/IApi'
 
 export default async function Status <T> (response: AxiosResponse<T>, apiProps: IApi<T>) {
   const { callback, tag, verb, configVerb, dispatch, getState } = apiProps

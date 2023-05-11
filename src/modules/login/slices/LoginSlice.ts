@@ -1,15 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 // interfaces
-import { ILogin } from '../Interfaces'
-import { TPayloadSetData } from '@/modules/store/Interfaces'
-
-const INITIAL_STATE = {
-  email: '',
-  password: '',
-  errors: {},
-  isLoading: false
-} as ILogin
+import { TPayloadSetData } from '@/modules/store/interfaces/TPayloadSetData'
+// resources
+import { INITIAL_STATE } from './InitialState'
 
 export const LoginSlice = createSlice({
   name: 'LoginSlice',

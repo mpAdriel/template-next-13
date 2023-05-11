@@ -1,12 +1,13 @@
 
 // interfaces
-import { ISingleError } from '@/modules/form/Interfaces'
+import { ISingleError } from '@/modules/form/interfaces/ISingleError'
+import { TDispatch } from '@/modules/store/interfaces/TDispatch'
+import { TStore } from '@/modules/store/interfaces/TStore'
 // resources
-import { loginFormValidation } from '../Validations'
-import { scrollToError } from '@/modules/form/Utils'
+import { scrollToError } from '@/modules/form/utils/scrollToError'
+import { loginFormValidation } from '../validations/loginForm'
 // actions
-import { setLogin } from './LoginSlice'
-import { TDispatch, TStore } from '@/modules/store/Interfaces'
+import { setLogin } from '../LoginSlice'
 
 export const loginValidation = () => async (dispatch: TDispatch, getState: TStore) => {
   const { email, password } = getState().LoginState

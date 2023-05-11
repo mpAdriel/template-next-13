@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios'
 
 // interfaces
-import { IApi } from './Interfaces'
+import { IApi } from './interfaces/IApi'
 // resources
 import Status from './Status'
 

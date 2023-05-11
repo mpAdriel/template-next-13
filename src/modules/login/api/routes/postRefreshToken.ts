@@ -2,9 +2,10 @@
 import { api } from '@/modules/api/api'
 
 // interfaces
-import { TDispatch, TStore } from '@/modules/store/Interfaces'
-import { EUrls, IGetUser } from '../Interfaces'
-import { ICallBack } from '@/modules/api/Interfaces'
+import { ICallBack } from '@/modules/api/interfaces/ICallback'
+import { TStore } from '@/modules/store/interfaces/TStore'
+import { TDispatch } from '@/modules/store/interfaces/TDispatch'
+import { IGetUser, UrlPostLogin } from '../interfaces/GetUser'
 // actions
 import { setLogin } from '../../slices/LoginSlice'
 
@@ -13,7 +14,7 @@ export const apiPostRefreshToken = <T>(callback?: ICallBack<T>) => async (dispat
   await api<IGetUser>(
     {
       verb: 'GET',
-      configVerb: { url: EUrls.postLogin.replace('<userId>', '2') },
+      configVerb: { url: UrlPostLogin.replace('<userId>', '2') },
       callback: {
         success: async (response) => {
           console.log('apiPostRefreshToken - Success', response)

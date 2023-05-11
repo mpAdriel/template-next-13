@@ -2,7 +2,6 @@ import storage from 'redux-persist/lib/storage'
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import logger from 'redux-logger'
-import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux'
 
 import LoginSlice from '../login/slices/LoginSlice'
 
@@ -25,9 +24,3 @@ export const store = configureStore({
     serializableCheck: false
   }).concat(logger)
 })
-
-export type TRootState = ReturnType<typeof store.getState>
-export type TAppDispatch = typeof store.dispatch
-
-export const useActions: () => TAppDispatch = useDispatch
-export const useStore: TypedUseSelectorHook<TRootState> = useSelector
