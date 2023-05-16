@@ -4,6 +4,7 @@ import axios, { AxiosResponse } from 'axios'
 import { IApi } from './interfaces/IApi'
 // resources
 import Status from './Status'
+import { isDev } from '@/utils/isDev'
 
 export const api = async <T>(props: IApi<T>) => {
   const { verb, configVerb, callback } = props
@@ -22,12 +23,12 @@ export const api = async <T>(props: IApi<T>) => {
   }
 
   const fSuccess = async (response: AxiosResponse<T>) => {
-    console.warn(`${url} => Response`, response)
+    if (isDev()) console.warn(`${url} => Response`, response)
     await Status(response, props)
   }
 
   const fError = async (error: any) => {
-    console.error(`${url} => Error`, error)
+    if (isDev()) console.error(`${url} => Error`, error)
     await callback.error(error)
   }
 

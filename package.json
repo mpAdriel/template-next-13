@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "pro": "next start",
-    "build": "next build",
-    "build:dev": "env-cmd -f .env.development next build && next export",
-    "build:pro": "env-cmd -f .env.production next build && next export",
+    "dev": "npm run build:dev && next dev",
+    "pro": "npm run build:pro && next start",
+    "build:dev": "env-cmd -f .env.development next build",
+    "build:pro": "env-cmd -f .env.production next build",
+    "export:dev": "env-cmd -f .env.development next build && next export",
+    "export:pro": "env-cmd -f .env.production next build && next export",
     "lint": "next lint"
   },
   "dependencies": {

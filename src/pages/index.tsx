@@ -1,7 +1,12 @@
 import { useEffect } from 'react'
+import Link from 'next/link'
+
+// resources
+import { Routing } from '@/router/routing'
+import { initI18N } from '@/i18n/i18n'
+// components
 import PrivateRouter from '@/includes/PrivateRouter'
 import RootLayout from '@/includes/RootLayout'
-import { initI18N } from '@/i18n/i18n'
 
 export default function Home () {
   useEffect(() => { initI18N('es') }, [])
@@ -9,8 +14,8 @@ export default function Home () {
   return (
     <PrivateRouter>
       <RootLayout>
-        <section>
-          <button className='btn btn-primary'>Home</button>
+        <section className='card card-glass'>
+          <Link className='btn btn-dark btn-glow p-3 px-5' href={Routing.login}>Go to login</Link>
         </section>
       </RootLayout>
     </PrivateRouter>

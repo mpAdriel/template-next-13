@@ -31,7 +31,7 @@ export default async function Status <T> (response: AxiosResponse<T>, apiProps: 
           getState,
           tag: 'FROM_REFRESH_TOKEN'
         }),
-        error: () => console.error('Error al refrescar el token')
+        error: () => console.error('Failed to refresh token')
       }))
       break
 

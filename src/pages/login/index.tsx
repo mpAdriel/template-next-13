@@ -24,7 +24,7 @@ export default function Login () {
     <PrivateRouter>
       <RootLayout title='Login'>
 
-        <section className='card card-glass' style={{ width: '500px' }}>
+        <section className='card card-glass mx-3' style={{ maxWidth: '500px' }}>
           <Form onsubmit={() => apiLogin()}>
             <div className='mb-3'>
               {/* //TODO: hacer un componente que contenga también el label, y un prop para añadir un contenedor con clase custom */}
@@ -64,7 +64,7 @@ export default function Login () {
             </p>
 
             <div className='d-grid gap-2'>
-              <button type='submit' className={`btn btn-primary btn-block ${isLoading ? 'disabled btn-loader' : ''}`}>
+              <button type='submit' className={`btn btn-dark btn-glow mt-2 p-2 btn-block ${isLoading ? 'disabled btn-loader' : ''}`}>
                 <span className='btn-text'>Submit</span>
               </button>
             </div>
