@@ -12,9 +12,17 @@ const persistConfig = {
   blacklist: []
 }
 
-const rootReducer = combineReducers({
+const combinedReducers = combineReducers({
   LoginState: LoginSlice
 })
+
+const rootReducer = (state: any, action: any) => {
+  if (action.type === 'RESET_STORE') {
+    state = undefined
+  }
+
+  return combinedReducers(state, action)
+}
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 

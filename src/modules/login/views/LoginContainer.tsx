@@ -23,7 +23,7 @@ export default function LoginContainer () {
   return (
     <RootLayout title='Login'>
 
-      <section className='card card-glass mx-3' style={{ maxWidth: '500px' }}>
+      <section className='card mx-3' style={{ maxWidth: '500px' }}>
         <Form onsubmit={() => apiLogin()}>
           <div className='mb-3'>
             {/* //TODO: hacer un componente que contenga también el label, y un prop para añadir un contenedor con clase custom */}
