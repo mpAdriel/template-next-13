@@ -10,5 +10,7 @@ export interface IApi<T> {
   configVerb: TIVerbs,
   callback: ICallBack<T>,
   dispatch: TDispatch, getState: TStore,
-  tag?: TTags
+  tag?: TTags,
+  setLoading?: (status: boolean) => {},
+  permission?: {value: boolean, permission: string}
 }

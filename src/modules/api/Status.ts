@@ -23,7 +23,7 @@ export default async function Status <T> (response: AxiosResponse<T>, apiProps: 
     case 401:
       if (tag === 'REFRESH_TOKEN') break
       await dispatch(apiPostRefreshToken({
-        success: () => api({
+        success: async () => await api({
           verb,
           configVerb,
           callback,

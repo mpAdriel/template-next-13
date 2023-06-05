@@ -17,6 +17,7 @@ const combinedReducers = combineReducers({
 })
 
 const rootReducer = (state: any, action: any) => {
+  // dispatch({ type: 'RESET_STORE' })
   if (action.type === 'RESET_STORE') {
     state = undefined
   }
