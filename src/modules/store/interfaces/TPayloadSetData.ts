@@ -1,3 +1,3 @@
 import { PayloadAction } from '@reduxjs/toolkit'
 
-export type TPayloadSetData = PayloadAction<{prop: string, value: any}>
+export type TPayloadSetData = PayloadAction<{ prop: string; value: any }>

@@ -1,4 +1,4 @@
 export interface ISingleError {
-  name: string,
-  error: string
+	name: string
+	error: string
 }

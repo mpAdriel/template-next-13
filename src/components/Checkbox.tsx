@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 
-export default function Input({
-	type = 'text',
+export default function Checkbox({
+	type = 'checkbox',
 	onChange,
-	value = '',
-	className = 'form-control',
+	checked = false,
+	className = 'form-check-input',
+	classNameLabel = 'form-check-label',
+	label,
 	id,
 	name,
-	autoComplete = 'off',
 	validator,
 	messageError,
 	help,
@@ -16,11 +17,12 @@ export default function Input({
 }: {
 	type?: string
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => any
-	value: string
+	checked: boolean
 	className?: string
-	id?: string
+	classNameLabel?: string
+	label: string
+	id: string // is required because attribute "htmlFor"
 	name: string
-	autoComplete?: string
 	validator?: () => any
 	messageError?: string
 	help?: string
@@ -35,34 +37,38 @@ export default function Input({
 	}
 
 	const input = (
-		<>
-			<input
-				{...restOfProps}
-				type={type}
-				onChange={e => {
-					onChange(e)
-					handleError()
-				}}
-				value={value}
-				className={className}
-				id={id}
-				name={name}
-				onBlur={() => {
-					if (!focused) setFocused(true)
-					handleError()
-				}}
-				autoComplete={autoComplete}
-			/>
+		<div>
+			<div className="form-check">
+				<input
+					{...restOfProps}
+					type={type}
+					onChange={e => {
+						onChange(e)
+						handleError()
+					}}
+					checked={checked}
+					className={className}
+					id={id}
+					name={name}
+					onBlur={() => {
+						if (!focused) setFocused(true)
+						handleError()
+					}}
+				/>
+				<label className={classNameLabel} htmlFor={id}>
+					{label}
+				</label>
+			</div>
 			{help && !messageError && (
 				<div className="form-text input-help">{help}</div>
 			)}
-		</>
+		</div>
 	)
 
 	if (validator) {
 		const showError = focused || submit
 		return (
-			<div className="d-grid gap-2">
+			<div className={`d-grid ${showError ? 'gap-2' : ''}`}>
 				{input}
 				{messageError && showError && (
 					<div className="alert alert-danger error-input m-0" role="alert">

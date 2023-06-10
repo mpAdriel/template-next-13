@@ -90,21 +90,10 @@ a {
 }
 
 /* form */
-
 .error-input {
-  display: none;
-}
-
-input[custom-focused="true"] ~ .error-input,
-form[custom-submit="true"] input ~ .error-input {
-  display: flex;
+	display: flex;
   align-items: center;
 }
-
-/* input[custom-focused="true"] ~ .input-help,
-form[custom-submit="true"] input[custom-focused="true"] ~ .input-help {
-  display: none;
-} */
 
 /* app */
 section.card {

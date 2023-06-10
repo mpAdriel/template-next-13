@@ -6,13 +6,14 @@ import { initI18N } from '@/i18n/i18n'
 import PrivateRouter from '@/includes/PrivateRouter'
 import HomeContainer from '@/modules/home/views/HomeContainer'
 
-export default function Home () {
-  useEffect(() => { initI18N('es') }, [])
+export default function Home() {
+	useEffect(() => {
+		initI18N('es')
+	}, [])
 
-  return (
-    <PrivateRouter>
-      <HomeContainer />
-    </PrivateRouter>
-
-  )
+	return (
+		<PrivateRouter>
+			<HomeContainer />
+		</PrivateRouter>
+	)
 }

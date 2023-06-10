@@ -1,17 +1,40 @@
 {
-  "extends": ["./node_modules/standard/eslintrc.json","next/core-web-vitals"],
-  // extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint"],
-  "root": true,
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "rules": {
-        "no-undef": "off",
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error"
-      }
-    }
-  ]
+	"extends": [
+		"./node_modules/standard/eslintrc.json",
+		"next/core-web-vitals",
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:prettier/recommended"
+	],
+	// extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint", "react", "prettier", "import"],
+	"root": true,
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {
+				"no-undef": "off",
+				"no-unused-vars": "off",
+				"@typescript-eslint/no-unused-vars": "error",
+				"max-len": ["error", { "code": 120 }],
+				"prettier/prettier": [
+					"error",
+					{
+						"bracketSpacing": true,
+						"quoteProps": "as-needed",
+						"trailingComma": "es5",
+						"arrowParens": "avoid",
+						"useTabs": true,
+						"tabWidth": 2,
+						"semi": false,
+						"singleQuote": true,
+						"endOfLine": "auto"
+					}
+				],
+				"react/react-in-jsx-scope": "off"
+			}
+		}
+	]
 }

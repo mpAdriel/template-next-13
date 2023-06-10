@@ -6,30 +6,31 @@ import logger from 'redux-logger'
 import LoginSlice from '../login/slices/LoginSlice'
 
 const persistConfig = {
-  key: 'root',
-  storage,
-  // whitelist: ['LoginState'],
-  blacklist: []
+	key: 'root',
+	storage,
+	// whitelist: ['LoginState'],
+	blacklist: [],
 }
 
 const combinedReducers = combineReducers({
-  LoginState: LoginSlice
+	LoginState: LoginSlice,
 })
 
 const rootReducer = (state: any, action: any) => {
-  // dispatch({ type: 'RESET_STORE' })
-  if (action.type === 'RESET_STORE') {
-    state = undefined
-  }
+	// dispatch({ type: 'RESET_STORE' })
+	if (action.type === 'RESET_STORE') {
+		state = undefined
+	}
 
-  return combinedReducers(state, action)
+	return combinedReducers(state, action)
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false
-  }).concat(logger)
+	reducer: persistedReducer,
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({
+			serializableCheck: false,
+		}).concat(logger),
 })

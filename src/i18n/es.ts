@@ -1,8 +1,8 @@
 export const es = {
-  translation: {
-    label: {
-      email: 'Correo electrónico',
-      password: 'Contraseña'
-    }
-  }
+	translation: {
+		label: {
+			email: 'Correo electrónico',
+			password: 'Contraseña',
+		},
+	},
 }

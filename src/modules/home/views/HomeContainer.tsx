@@ -1,4 +1,3 @@
-
 import React from 'react'
 import Link from 'next/link'
 
@@ -8,13 +7,15 @@ import RootLayout from '@/includes/RootLayout'
 import { Routing } from '@/router/routing'
 
 const HomeContainer = () => {
-  return (
-    <RootLayout>
-      <section className='card card-glass'>
-        <Link className='btn btn-dark btn-glow p-3 px-5' href={Routing.login}>Go to login</Link>
-      </section>
-    </RootLayout>
-  )
+	return (
+		<RootLayout>
+			<section className="card card-glass">
+				<Link className="btn btn-dark btn-glow p-3 px-5" href={Routing.login}>
+					Go to login
+				</Link>
+			</section>
+		</RootLayout>
+	)
 }
 
 export default HomeContainer

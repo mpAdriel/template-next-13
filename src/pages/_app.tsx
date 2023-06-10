@@ -8,16 +8,16 @@ import { persistStore } from 'redux-persist'
 
 const persistor = persistStore(store)
 
-export default function App ({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <PersistGate persistor={persistor}>
-        <Provider store={store}>
-          <div className='container' id='app'>
-            <Component {...pageProps} />
-          </div>
-        </Provider>
-      </PersistGate>
-    </>
-  )
+export default function App({ Component, pageProps }: AppProps) {
+	return (
+		<>
+			<PersistGate persistor={persistor}>
+				<Provider store={store}>
+					<div className="container" id="app">
+						<Component {...pageProps} />
+					</div>
+				</Provider>
+			</PersistGate>
+		</>
+	)
 }
