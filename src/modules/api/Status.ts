@@ -5,6 +5,7 @@ import { api } from './api'
 import { apiPostRefreshToken } from '../login/api/routes/postRefreshToken'
 // interfaces
 import { IApi } from './interfaces/IApi'
+import { ETags } from './interfaces/ETags'
 
 export default async function Status<T>(
 	response: AxiosResponse<T>,
@@ -34,7 +35,7 @@ export default async function Status<T>(
 							callback,
 							dispatch,
 							getState,
-							tag: 'FROM_REFRESH_TOKEN',
+							tag: ETags.FROM_REFRESH_TOKEN,
 						}),
 					error: () => console.error('Failed to refresh token'),
 				})

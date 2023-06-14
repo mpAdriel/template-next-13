@@ -1,6 +1,12 @@
 import { AxiosRequestConfig } from 'axios'
 
-export type TVerbs = 'GET' | 'POST' | 'PUT' | 'DEL' | 'PATCH'
+export enum EVerbs {
+	GET = 'GET',
+	POST = 'POST',
+	PUT = 'PUT',
+	DEL = 'DEL',
+	PATCH = 'PATCH',
+}
 
 export interface IGet {
 	url: string

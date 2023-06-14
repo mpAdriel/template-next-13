@@ -5,6 +5,8 @@ import { ICallBack } from '@/modules/api/interfaces/ICallback'
 import { TStore } from '@/modules/store/interfaces/TStore'
 import { TDispatch } from '@/modules/store/interfaces/TDispatch'
 import { IGetUser, UrlPostLogin } from '../interfaces/GetUser'
+import { EVerbs } from '@/modules/api/interfaces/Interfaces'
+import { ETags } from '@/modules/api/interfaces/ETags'
 // actions
 import { setLogin } from '../../slices/LoginSlice'
 // resources
@@ -15,7 +17,7 @@ export const apiPostRefreshToken =
 	async (dispatch: TDispatch, getState: TStore) => {
 		await dispatch(setLogin({ prop: 'isLoading', value: true }))
 		await api<IGetUser>({
-			verb: 'GET',
+			verb: EVerbs.GET,
 			configVerb: { url: UrlPostLogin.replace('<userId>', '2') },
 			callback: {
 				success: async response => {
@@ -32,6 +34,6 @@ export const apiPostRefreshToken =
 			},
 			dispatch,
 			getState,
-			tag: 'REFRESH_TOKEN',
+			tag: ETags.REFRESH_TOKEN,
 		})
 	}

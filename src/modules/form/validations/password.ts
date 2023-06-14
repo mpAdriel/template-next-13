@@ -10,4 +10,5 @@ export const validatePassword = (password: string) => {
 	} else if (!isValidPassword(password)) {
 		return 'Invalid password'
 	}
+	return ''
 }

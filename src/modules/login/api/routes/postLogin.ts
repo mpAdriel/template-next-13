@@ -5,6 +5,7 @@ import { TDispatch } from '@/modules/store/interfaces/TDispatch'
 import { TStore } from '@/modules/store/interfaces/TStore'
 import { IGetUser, UrlPostLogin } from '../interfaces/GetUser'
 import { EModules } from '@/modules/EModules'
+import { EVerbs } from '@/modules/api/interfaces/Interfaces'
 // actions
 import { setLogin } from '../../slices/LoginSlice'
 import { loginValidation } from '../../slices/actions/loginValidation'
@@ -18,7 +19,7 @@ export const apiPostLogin =
 		if (isError) return
 
 		await api<IGetUser>({
-			verb: 'GET',
+			verb: EVerbs.GET,
 			configVerb: { url: UrlPostLogin.replace('<userId>', '1') },
 			permission: {
 				value: await hasPermission([''], 'ADMIN'),

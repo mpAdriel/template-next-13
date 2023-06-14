@@ -7,6 +7,7 @@ import { setLogin } from '@/modules/login/slices/LoginSlice'
 import { useStore } from '@/modules/store/useStore'
 import { useActions } from '@/modules/store/useActions'
 import { loginValidation } from '@/modules/login/slices/actions/loginValidation'
+import { t } from '@/i18n/i18n'
 // components
 import RootLayout from '@/includes/RootLayout'
 import { Form, Input, Checkbox } from '@/components'
@@ -50,7 +51,7 @@ export default function LoginContainer() {
 					</div>
 					<div className="mb-3">
 						<label htmlFor="exampleInputPassword1" className="form-label">
-							Password
+							{t('label.password')}
 						</label>
 						<Input
 							name="password"
