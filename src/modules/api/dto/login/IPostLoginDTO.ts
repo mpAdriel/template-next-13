@@ -1,4 +1,4 @@
-export interface IPostLogin {
+export interface IPostLoginDTO {
 	email: string
 	password: string
 	repeatPassword?: string

@@ -3,7 +3,7 @@ import { ISingleError } from '@/modules/form/interfaces/ISingleError'
 import { TDispatch } from '@/modules/store/interfaces/TDispatch'
 import { TStore } from '@/modules/store/interfaces/TStore'
 // resources
-import { scrollToError } from '@/modules/form/utils/scrollToError'
+import { scrollToError } from '@/modules/form/utils'
 import { loginFormValidation } from '../validations/loginForm'
 // actions
 import { setLogin } from '../LoginSlice'

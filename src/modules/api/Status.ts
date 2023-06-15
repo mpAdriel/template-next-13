@@ -2,11 +2,11 @@ import { AxiosResponse } from 'axios'
 
 // actions
 import { api } from './api'
-import { apiPostRefreshToken } from '../login/api/routes/postRefreshToken'
+import { apiPostRefreshToken } from '../login/api/postRefreshToken'
 // interfaces
 import { IApi } from './interfaces/IApi'
-import { ETags } from './interfaces/ETags'
 import { parseDataFromAPI } from '@/utils'
+import { ETags } from './enum/ETags'
 
 export default async function Status<T, D>(
 	response: AxiosResponse<T>,

@@ -1,4 +1,4 @@
-export interface UserDTO {
+export interface IGetUserDetailDTO {
 	id: number
 	name: string
 	username: string

@@ -1,4 +1,5 @@
-export interface IPostUserDTO {
+export interface IPostResUserDTO {
+	id: number
 	title: string
 	body: string
 	userId: number

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // api
-import { apiPostLogin } from '@/modules/login/api/routes/postLogin'
+import { apiPostLogin } from '@/modules/login/api/postLogin'
 // resources
 import { setLogin } from '@/modules/login/slices/LoginSlice'
 import { useStore } from '@/modules/store/useStore'
