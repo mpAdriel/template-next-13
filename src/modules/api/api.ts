@@ -44,6 +44,7 @@ export const api = async <T>(props: IApi<T>) => {
 
 	// remember ".finally(function(){})"
 
+	const body = {}
 	if (verb === 'GET') {
 		await axios
 			.get(url, config)
@@ -55,7 +56,7 @@ export const api = async <T>(props: IApi<T>) => {
 			})
 	} else if (verb === 'POST') {
 		await axios
-			.post(url, config)
+			.post(url, body, config)
 			.then(async function (response) {
 				await fSuccess(response)
 			})

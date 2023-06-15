@@ -2,11 +2,11 @@
 import { validatePassword } from '@/modules/form/validations/password'
 import { validateEmail } from '@/modules/form/validations/email'
 // interfaces
-import { DTOLogin } from '../../api/dto/login'
+import { IPostLogin } from '../../api/interfaces/PostLogin'
 import { ILoginError } from '../interfaces/ILoginError'
 import { validateTermsConditions } from '@/modules/form/validations/termsConditions'
 
-export const loginFormValidation = (values: DTOLogin) => {
+export const loginFormValidation = (values: IPostLogin) => {
 	const errors = {} as ILoginError
 
 	const email = validateEmail(values.email)

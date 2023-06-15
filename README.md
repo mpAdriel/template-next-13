@@ -36,3 +36,30 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## My settings.json VSCODE
+
+```json
+{
+	/* theme */
+	"workbench.colorTheme": "Aura Soft Dark",
+	"workbench.iconTheme": "icons",
+	"editor.guides.bracketPairs": true,
+	/* git */
+	"git.ignoreMissingGitWarning": true,
+	/* text editor and format code */
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"eslint.alwaysShowStatus": true,
+	/* others */
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"svg.preview.mode": "svg",
+	"svelte.enable-ts-plugin": true
+}
+```

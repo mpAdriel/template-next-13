@@ -1,6 +1,6 @@
-export interface DTOLogin {
-	email: string
-	password: string
-	repeatPassword?: string
-	termsConditions: boolean
+export interface IPostUserDTO {
+	id: number
+	title: string
+	body: string
+	userId: number
 }

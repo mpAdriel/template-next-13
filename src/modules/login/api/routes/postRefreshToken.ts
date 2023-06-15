@@ -4,7 +4,7 @@ import { api } from '@/modules/api/api'
 import { ICallBack } from '@/modules/api/interfaces/ICallback'
 import { TStore } from '@/modules/store/interfaces/TStore'
 import { TDispatch } from '@/modules/store/interfaces/TDispatch'
-import { IGetUser, UrlPostLogin } from '../interfaces/GetUser'
+import { IGetUser, UrlPostLogin } from '../interfaces/PostUser'
 import { EVerbs } from '@/modules/api/interfaces/Interfaces'
 import { ETags } from '@/modules/api/interfaces/ETags'
 // actions

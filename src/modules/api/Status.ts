@@ -6,18 +6,20 @@ import { apiPostRefreshToken } from '../login/api/routes/postRefreshToken'
 // interfaces
 import { IApi } from './interfaces/IApi'
 import { ETags } from './interfaces/ETags'
+import { parseDataFromAPI } from '@/utils/parseDataFromAPI'
 
 export default async function Status<T>(
 	response: AxiosResponse<T>,
 	apiProps: IApi<T>
 ) {
 	const { callback, tag, verb, configVerb, dispatch, getState } = apiProps
+	const parsedResponse = parseDataFromAPI<T>(response.data)
 
 	switch (response.status) {
 		case 200:
 		case 201:
 		case 204:
-			await callback.success(response.data)
+			await callback.success(parsedResponse)
 			break
 
 		case 400:
