@@ -6,11 +6,11 @@ import { apiPostRefreshToken } from '../login/api/routes/postRefreshToken'
 // interfaces
 import { IApi } from './interfaces/IApi'
 import { ETags } from './interfaces/ETags'
-import { parseDataFromAPI } from '@/utils/parseDataFromAPI'
+import { parseDataFromAPI } from '@/utils'
 
-export default async function Status<T>(
+export default async function Status<T, D>(
 	response: AxiosResponse<T>,
-	apiProps: IApi<T>
+	apiProps: IApi<T, D | undefined>
 ) {
 	const { callback, tag, verb, configVerb, dispatch, getState } = apiProps
 	const parsedResponse = parseDataFromAPI<T>(response.data)
@@ -27,7 +27,7 @@ export default async function Status<T>(
 			break
 
 		case 401:
-			if (tag === 'REFRESH_TOKEN') break
+			if (tag === ETags.REFRESH_TOKEN) break
 			await dispatch(
 				apiPostRefreshToken({
 					success: async () =>

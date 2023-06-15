@@ -4,38 +4,34 @@ import { api } from '@/modules/api/api'
 import { TDispatch } from '@/modules/store/interfaces/TDispatch'
 import { TStore } from '@/modules/store/interfaces/TStore'
 import { IPostUser, UrlPostLogin } from '../interfaces/PostUser'
-import { EModules } from '@/modules/EModules'
-import { EVerbs } from '@/modules/api/interfaces/Interfaces'
+import { EModules } from '@/modules/api/enum/EModules'
+import { EVerbs } from '@/modules/api/enum/EVerbs'
 // actions
 import { setLogin } from '../../slices/LoginSlice'
 import { loginValidation } from '../../slices/actions/loginValidation'
 // resources
-import { isDev } from '@/utils/isDev'
-import { hasPermission } from '@/modules/user/hasPermission'
+import { isDev } from '@/utils'
 
 export const apiPostLogin =
 	() => async (dispatch: TDispatch, getState: TStore) => {
 		const { isError } = await dispatch(loginValidation())
 		if (isError) return
 
-		await api<IPostUser>({
+		await api<IPostUser, IPostUser>({
 			verb: EVerbs.POST,
 			configVerb: {
 				url: UrlPostLogin,
-				data: JSON.stringify({
+				data: {
 					body: 'This is my new post',
 					title: 'New post',
 					userId: 1,
-				} as IPostUser),
+				},
 			},
-			permission: {
-				value: await hasPermission(['ADMIN'], 'ADMIN'),
-				permission: 'ADMIN',
-			},
+			permissions: ['MANAGE_PYMES'],
 			callback: {
 				success: async response => {
 					if (isDev()) console.log('apiPostLogin - Success', response)
-					dispatch(setLogin({ prop: 'email', value: response?.title }))
+					// dispatch(setLogin({ prop: 'email', value: response?.title }))
 					// setTimeout(() => {
 					//   setInterval(async () => {
 					//     await dispatch(apiPostRefreshToken())

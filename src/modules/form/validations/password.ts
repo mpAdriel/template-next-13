@@ -1,6 +1,6 @@
 import { regexPassword } from '../regex/password'
 
-export const isValidPassword = (password: string) => {
+export const isValidPassword = (password: string): boolean => {
 	return regexPassword.test(password.trim())
 }
 

@@ -1,18 +1,19 @@
 // interfaces
 import { TDispatch } from '@/modules/store/interfaces/TDispatch'
 import { ICallBack } from './ICallback'
-import { TIVerbs, EVerbs } from './Interfaces'
+import { IRequestConfig } from './IRequestConfig'
 import { ETags } from './ETags'
 import { TStore } from '@/modules/store/interfaces/TStore'
+import { EVerbs } from './EVerbs'
 
-export interface IApi<T> {
+export interface IApi<T, D> {
 	verb: EVerbs
-	configVerb: TIVerbs
+	configVerb: IRequestConfig<D>
 	callback: ICallBack<T>
 	dispatch: TDispatch
 	getState: TStore
 	tag?: ETags
 	setLoading?: (status: boolean) => {}
-	permission?: { value: boolean; permission: string }
+	permissions?: string[]
 	module?: string
 }

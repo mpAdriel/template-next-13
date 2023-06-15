@@ -11,8 +11,10 @@ export const loginFormValidation = (values: IPostLogin) => {
 
 	const email = validateEmail(values.email)
 	if (email) errors.email = { name: 'email', error: email }
+
 	const password = validatePassword(values.password)
 	if (password) errors.password = { name: 'password', error: password }
+
 	const termsConditions = validateTermsConditions(values.termsConditions)
 	if (termsConditions)
 		errors.termsConditions = {

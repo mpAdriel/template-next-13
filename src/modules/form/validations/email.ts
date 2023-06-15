@@ -1,6 +1,6 @@
 import { regexEmail } from '../regex/email'
 
-export const isValidEmail = (email: string) => {
+export const isValidEmail = (email: string): boolean => {
 	return regexEmail.test(email.trim())
 }
 

@@ -1,6 +1,8 @@
 // interfaces
-import { ILogin } from '@/modules/login/slices/interfaces/ILogin'
+import { ILoginState } from '@/modules/login/slices/interfaces/ILoginState'
+import { IUserState } from '@/modules/user/slices/interfaces/IUserState'
 
 export type TStore = () => {
-	LoginState: ILogin
+	LoginState: ILoginState
+	UserState: IUserState
 }

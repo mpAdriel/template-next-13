@@ -1,5 +1,4 @@
-import { parseCodeHTMLToString } from './parseCodeHTMLToString'
-import { parseObject } from './parseObject'
+import { parseCodeHTMLToString, parseObject } from './'
 
 export const parseDataFromAPI = <T>(data: T): T => {
 	if (data) data = parseObject(data) as T

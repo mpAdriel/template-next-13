@@ -1,4 +1,4 @@
-import { ILogin } from './interfaces/ILogin'
+import { ILoginState } from './interfaces/ILoginState'
 
 export const INITIAL_STATE = {
 	email: '',
@@ -6,4 +6,4 @@ export const INITIAL_STATE = {
 	termsConditions: false,
 	errors: {},
 	isLoading: false,
-} as ILogin
+} as ILoginState

@@ -89,12 +89,6 @@ a {
 	100% { background-position: 0 0; }
 }
 
-/* form */
-.error-input {
-	display: flex;
-  align-items: center;
-}
-
 /* app */
 section.card {
   background-color: rgba(255, 255, 255, 0.5);

@@ -4,6 +4,7 @@ import { persistReducer } from 'redux-persist'
 import logger from 'redux-logger'
 
 import LoginSlice from '../login/slices/LoginSlice'
+import UserSlice from '../user/slices/UserSlice'
 
 const persistConfig = {
 	key: 'root',
@@ -14,6 +15,7 @@ const persistConfig = {
 
 const combinedReducers = combineReducers({
 	LoginState: LoginSlice,
+	UserState: UserSlice,
 })
 
 const rootReducer = (state: any, action: any) => {

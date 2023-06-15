@@ -13,20 +13,12 @@ interface IPropToast {
 export const launchToast = ({
 	isError,
 	isSuccess,
-	isPromise,
-	promise,
 	msg,
 	duration,
 }: {
 	isError?: boolean
 	isSuccess?: boolean
-	isPromise?: boolean
-	promise?: {
-		value: Promise<unknown>
-		loading: string
-		success: string
-		error: string
-	}
+
 	msg: string
 	duration?: number
 }) => {
@@ -38,13 +30,6 @@ export const launchToast = ({
 	} else if (isSuccess) {
 		props.iconSrc = iconSuccess
 		props.iconAlt = 'success'
-	} else if (isPromise && promise) {
-		toast.promise(promise.value, {
-			loading: promise.loading,
-			success: promise.success,
-			error: promise.error,
-		})
-		return
 	} else {
 		// add prop custom icon
 	}

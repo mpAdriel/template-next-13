@@ -1,6 +1,6 @@
 import { ILoginError } from './ILoginError'
 
-export interface ILogin {
+export interface ILoginState {
 	email: string
 	password: string
 	termsConditions: boolean

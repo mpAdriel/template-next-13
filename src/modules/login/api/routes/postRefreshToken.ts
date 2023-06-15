@@ -4,19 +4,20 @@ import { api } from '@/modules/api/api'
 import { ICallBack } from '@/modules/api/interfaces/ICallback'
 import { TStore } from '@/modules/store/interfaces/TStore'
 import { TDispatch } from '@/modules/store/interfaces/TDispatch'
-import { IGetUser, UrlPostLogin } from '../interfaces/PostUser'
-import { EVerbs } from '@/modules/api/interfaces/Interfaces'
+import { UrlPostLogin } from '../interfaces/PostUser'
 import { ETags } from '@/modules/api/interfaces/ETags'
+import { UserDTO } from '../dto/user'
+import { EVerbs } from '@/modules/api/interfaces/EVerbs'
 // actions
 import { setLogin } from '../../slices/LoginSlice'
 // resources
-import { isDev } from '@/utils/isDev'
+import { isDev } from '@/utils'
 
 export const apiPostRefreshToken =
 	<T>(callback?: ICallBack<T>) =>
 	async (dispatch: TDispatch, getState: TStore) => {
 		await dispatch(setLogin({ prop: 'isLoading', value: true }))
-		await api<IGetUser>({
+		await api<UserDTO, undefined>({
 			verb: EVerbs.GET,
 			configVerb: { url: UrlPostLogin.replace('<userId>', '2') },
 			callback: {

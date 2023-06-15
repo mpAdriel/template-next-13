@@ -5,18 +5,18 @@ import { TPayloadSetData } from '@/modules/store/interfaces/TPayloadSetData'
 // resources
 import { INITIAL_STATE } from './InitialState'
 
-export const LoginSlice = createSlice({
-	name: 'LoginSlice',
+export const UserSlice = createSlice({
+	name: 'UserSlice',
 	initialState: INITIAL_STATE,
 	reducers: {
-		clearLogin: () => {
+		clearUser: () => {
 			return INITIAL_STATE
 		},
-		setLogin: (state, action: TPayloadSetData) => {
+		setUser: (state, action: TPayloadSetData) => {
 			return { ...state, [action.payload.prop]: action.payload.value }
 		},
 	},
 })
 
-export const { setLogin } = LoginSlice.actions
-export default LoginSlice.reducer
+export const { setUser } = UserSlice.actions
+export default UserSlice.reducer

@@ -6,9 +6,11 @@ const nextConfig = {
 	env: {
 		BASE_URL_API: process.env.BASE_URL_API,
 		NAME: process.env.NAME,
-		PORT: process.env.PORT,
+		VERSION_APP: process.env.VERSION_APP,
+		VERSION_API: process.env.VERSION_API,
 	},
 	output: 'standalone',
+	// ? when use images, add hostname and uncomment images object
 	// images: {
 	// 	unoptimized: true,
 	// 	remotePatterns: [

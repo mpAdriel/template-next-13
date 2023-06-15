@@ -4,16 +4,24 @@ import axios, { AxiosResponse } from 'axios'
 import { IApi } from './interfaces/IApi'
 // resources
 import Status from './Status'
-import { isDev } from '@/utils/isDev'
+import { isDev, parseDataToAPI } from '@/utils'
+import { HasPermissions } from '../user/utils/HasPermissions'
 
-export const api = async <T>(props: IApi<T>) => {
-	const { verb, configVerb, callback, setLoading, permission } = props
+export const api = async <T, D>(props: IApi<T, D | undefined>) => {
+	const { verb, configVerb, callback, setLoading, permissions } = props
 	let { url, config } = configVerb
 
-	if (permission && !permission?.value) {
-		// launch toast
-		console.error(`403- You do not have ${permission.permission} permission`)
-		return
+	if (permissions) {
+		const hasPermission = HasPermissions(permissions)
+		if (!hasPermission) {
+			// launch toast
+			if (isDev()) {
+				console.error(
+					`403 - You do not have ${permissions.join(', ')} permission`
+				)
+			}
+			return
+		}
 	}
 
 	if (setLoading) await setLoading(true)
@@ -32,7 +40,7 @@ export const api = async <T>(props: IApi<T>) => {
 
 	const fSuccess = async (response: AxiosResponse<T>) => {
 		if (isDev()) console.warn(`${url} => Response`, response)
-		await Status(response, props)
+		await Status<T, D>(response, props)
 		if (setLoading) await setLoading(false)
 	}
 
@@ -44,7 +52,8 @@ export const api = async <T>(props: IApi<T>) => {
 
 	// remember ".finally(function(){})"
 
-	const body = {}
+	const body = parseDataToAPI(configVerb.data) as D
+
 	if (verb === 'GET') {
 		await axios
 			.get(url, config)
