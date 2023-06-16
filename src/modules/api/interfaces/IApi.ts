@@ -1,10 +1,7 @@
 // interfaces
-import { TDispatch } from '@/modules/store/interfaces/TDispatch'
-import { ICallBack } from './ICallback'
-import { IRequestConfig } from './IRequestConfig'
-import { TStore } from '@/modules/store/interfaces/TStore'
-import { ETags } from '../enum/ETags'
-import { EVerbs } from '../enum/EVerbs'
+import { TDispatch, TStore } from '@/modules/store/interfaces'
+import { ICallBack, IRequestConfig } from './'
+import { ETags, EVerbs } from '../enum'
 
 export interface IApi<T, D> {
 	verb: EVerbs

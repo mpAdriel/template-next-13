@@ -7,8 +7,8 @@ import {
 import { PersistPartial } from 'redux-persist/es/persistReducer'
 
 // interfaces
-import { ILoginState } from '@/modules/login/slices/interfaces/ILoginState'
-import { IUserState } from '@/modules/user/slices/interfaces/IUserState'
+import { ILoginState } from '@/modules/login/slices/interfaces'
+import { IUserState } from '@/modules/user/slices/interfaces'
 
 export type TDispatch = ThunkDispatch<
 	EmptyObject & {

@@ -1,4 +1,4 @@
-import { ISingleError } from '@/modules/form/interfaces/ISingleError'
+import { ISingleError } from '@/modules/form/interfaces'
 
 export interface ILoginError {
 	email?: ISingleError

@@ -1,13 +1,10 @@
 // interfaces
-import { TDispatch } from '@/modules/store/interfaces/TDispatch'
-import { TStore } from '@/modules/store/interfaces/TStore'
-import { EModules } from '@/modules/api/enum/EModules'
-import { EVerbs } from '@/modules/api/enum/EVerbs'
-import { IPostUserDTO } from '@/modules/api/dto/user/IPostUserDTO'
-import { IPostResUserDTO } from '@/modules/api/dto/user/IPostResUserDTO'
+import { TDispatch, TStore } from '@/modules/store/interfaces'
+import { EModules, EVerbs } from '@/modules/api/enum'
+import { TokensDTO } from '@/modules/api/modules/login/res'
+import { PostLoginDTO } from '@/modules/api/modules/login/req'
 // actions
-import { setLogin } from '../slices/LoginSlice'
-import { loginValidation } from '../slices/actions/loginValidation'
+import { setLogin, loginValidation } from '../slices/actions'
 // resources
 import { api } from '@/modules/api/api'
 import { isDev } from '@/utils'
@@ -17,17 +14,17 @@ export const apiPostLogin =
 		const { isError } = await dispatch(loginValidation())
 		if (isError) return
 
-		await api<IPostResUserDTO, IPostUserDTO>({
+		await api<TokensDTO, PostLoginDTO>({
 			verb: EVerbs.POST,
 			configVerb: {
-				url: 'posts',
+				url: 'login',
 				data: {
-					body: 'This is my new post',
-					title: 'New post',
-					userId: 1,
+					email: 'user@mail.com',
+					password: 'Qwerty1234',
+					termsConditions: true,
 				},
 			},
-			permissions: ['MANAGE_PYMES'],
+			permissions: ['ADMIN'],
 			callback: {
 				success: async response => {
 					if (isDev()) console.log('apiPostLogin - Success', response)

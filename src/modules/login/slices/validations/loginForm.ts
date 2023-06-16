@@ -5,10 +5,10 @@ import {
 	validateTermsConditions,
 } from '@/modules/form/validations'
 // interfaces
-import { IPostLoginDTO } from '@/modules/api/dto/login/IPostLoginDTO'
-import { ILoginError } from '../interfaces/ILoginError'
+import { ILoginError } from '../interfaces'
+import { PostLoginDTO } from '@/modules/api/modules/login/req'
 
-export const loginFormValidation = (values: IPostLoginDTO) => {
+export const loginFormValidation = (values: PostLoginDTO) => {
 	const errors = {} as ILoginError
 
 	const email = validateEmail(values.email)

@@ -1,4 +1,4 @@
-import { ILoginState } from './interfaces/ILoginState'
+import { ILoginState } from './interfaces'
 
 export const INITIAL_STATE = {
 	email: '',

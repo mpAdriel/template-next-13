@@ -1,5 +1,5 @@
 // interfaces
-import { ISingleError } from '../interfaces/ISingleError'
+import { ISingleError } from '../interfaces'
 
 export const scrollToError = (error: ISingleError) => {
 	document

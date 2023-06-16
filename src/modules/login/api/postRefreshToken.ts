@@ -1,12 +1,10 @@
 // interfaces
-import { ICallBack } from '@/modules/api/interfaces/ICallback'
-import { TStore } from '@/modules/store/interfaces/TStore'
-import { TDispatch } from '@/modules/store/interfaces/TDispatch'
-import { EVerbs } from '@/modules/api/enum/EVerbs'
-import { ETags } from '@/modules/api/enum/ETags'
-import { IGetUserDetailDTO } from '@/modules/api/dto/user/IGetUserDetailDTO'
+import { EVerbs, ETags } from '@/modules/api/enum'
+import { ICallBack } from '@/modules/api/interfaces'
+import { TokensDTO } from '@/modules/api/modules/login/res'
+import { TDispatch, TStore } from '@/modules/store/interfaces'
 // actions
-import { setLogin } from '../slices/LoginSlice'
+import { setLogin } from '../slices/actions'
 // resources
 import { api } from '@/modules/api/api'
 import { isDev } from '@/utils'
@@ -14,7 +12,7 @@ import { isDev } from '@/utils'
 export const apiPostRefreshToken =
 	<T>(callback?: ICallBack<T>) =>
 	async (dispatch: TDispatch, getState: TStore) => {
-		await api<IGetUserDetailDTO, undefined>({
+		await api<TokensDTO, undefined>({
 			verb: EVerbs.GET,
 			configVerb: { url: 'refreshToken' },
 			callback: {

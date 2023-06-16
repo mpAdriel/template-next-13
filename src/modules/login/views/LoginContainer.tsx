@@ -1,12 +1,10 @@
 import React, { useState } from 'react'
 
 // api
-import { apiPostLogin } from '@/modules/login/api/postLogin'
+import { apiPostLogin } from '@/modules/login/api'
 // resources
-import { setLogin } from '@/modules/login/slices/LoginSlice'
-import { useStore } from '@/modules/store/useStore'
-import { useActions } from '@/modules/store/useActions'
-import { loginValidation } from '@/modules/login/slices/actions/loginValidation'
+import { setLogin, loginValidation } from '@/modules/login/slices/actions'
+import { useStore, useActions } from '@/modules/store'
 import { t } from '@/i18n/i18n'
 // components
 import RootLayout from '@/includes/RootLayout'

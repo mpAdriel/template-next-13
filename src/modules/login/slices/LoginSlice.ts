@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 // interfaces
-import { TPayloadSetData } from '@/modules/store/interfaces/TPayloadSetData'
+import { TPayloadSetData } from '@/modules/store/interfaces'
 // resources
 import { INITIAL_STATE } from './InitialState'
 
@@ -18,5 +18,5 @@ export const LoginSlice = createSlice({
 	},
 })
 
-export const { setLogin } = LoginSlice.actions
+export const { setLogin, clearLogin } = LoginSlice.actions
 export default LoginSlice.reducer

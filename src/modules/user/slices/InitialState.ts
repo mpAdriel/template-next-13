@@ -1,9 +1,9 @@
-import { IUserState } from './interfaces/IUserState'
+import { IUserState } from './interfaces'
 
 export const INITIAL_STATE = {
 	accessToken: '',
 	userData: {
 		userProfile: {},
-		permissions: [],
+		permissions: ['ADMIN'],
 	},
 } as IUserState

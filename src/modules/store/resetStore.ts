@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 
 // slices
-import { LoginSlice } from '../login/slices/LoginSlice'
-import { UserSlice } from '../user/slices/UserSlice'
+import { clearLogin } from '../login/slices/actions'
+import { clearUser } from '../user/slices/actions'
 
 export const resetStore = createAsyncThunk(
 	'resetStore',
 	async (_, { dispatch }) => {
-		await dispatch(LoginSlice.actions.clearLogin())
-		await dispatch(UserSlice.actions.clearUser())
+		await dispatch(clearLogin())
+		await dispatch(clearUser())
 	}
 )

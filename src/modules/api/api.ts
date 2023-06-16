@@ -1,19 +1,27 @@
 import axios, { AxiosResponse } from 'axios'
 
 // interfaces
-import { IApi } from './interfaces/IApi'
+import { IApi } from './interfaces'
 // resources
 import Status from './Status'
 import { isDev, parseDataToAPI } from '@/utils'
-import { HasPermissions } from '../user/utils/HasPermissions'
+import { hasPermissions } from '../user/utils'
 
 export const api = async <T, D>(props: IApi<T, D | undefined>) => {
-	const { verb, configVerb, callback, setLoading, permissions } = props
+	const {
+		verb,
+		configVerb,
+		callback,
+		setLoading,
+		permissions = [],
+		getState,
+	} = props
 	let { url, config } = configVerb
 
 	if (permissions) {
-		const hasPermission = HasPermissions(permissions)
-		if (!hasPermission) {
+		const userPermissions = getState().UserState.userData.permissions
+		const canRequest = hasPermissions(userPermissions, permissions)
+		if (!canRequest) {
 			// launch toast
 			if (isDev()) {
 				console.error(
