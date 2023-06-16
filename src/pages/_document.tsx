@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import Script from 'next/script'
 
 export default function Document() {
 	return (
@@ -24,12 +23,6 @@ export default function Document() {
 					integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 					crossOrigin="anonymous"
 					async
-				/>
-
-				<Script
-					type="text/javascript"
-					src="javascript/vanilla-tilt.min.js"
-					strategy="lazyOnload"
 				/>
 			</body>
 		</Html>

@@ -128,7 +128,7 @@ export default function LoginContainer() {
 					<div className="d-grid gap-2">
 						<button
 							type="submit"
-							className={`btn btn-dark btn-glow mt-2 p-2 btn-block ${
+							className={`btn btn-primary mt-2 p-2 btn-block ${
 								isLoading ? 'disabled btn-loader' : ''
 							}`}
 						>

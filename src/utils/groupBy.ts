@@ -1,18 +1,18 @@
 export function groupBy<T, K extends keyof T>(
 	array: T[],
 	attribute: K
-): Array<{ [key in K]: T[] }> {
+): Array<{ key: T[K]; value: T[] }> {
 	const groupedArray: { [key: string]: T[] }[] = []
 
 	array.forEach(function (item) {
-		const attributeValue = item[attribute] as unknown as string
+		const attributeValue = item[attribute] as unknown as T[K] & string
 
-		const existingGroupIndex = groupedArray.findIndex(
-			group => group[attributeValue]
+		const existingGroup = groupedArray.find(
+			group => group[attributeValue] !== undefined
 		)
 
-		if (existingGroupIndex !== -1) {
-			groupedArray[existingGroupIndex][attributeValue].push(item)
+		if (existingGroup) {
+			existingGroup[attributeValue].push(item)
 		} else {
 			const newGroup: { [key: string]: T[] } = {}
 			newGroup[attributeValue] = [item]
@@ -21,11 +21,8 @@ export function groupBy<T, K extends keyof T>(
 	})
 
 	return groupedArray.map(group => {
-		const attributeKey = Object.keys(group)[0] as K
-		const attributeValue = group[attributeKey as string]
-		const result: { [key in K]: T[] } = {
-			[attributeKey]: attributeValue,
-		} as { [key in K]: T[] }
-		return result
-	}) as Array<{ [key in K]: T[] }>
+		const attributeKey = Object.keys(group)[0]
+		const attributeValue = group[attributeKey as keyof typeof group]
+		return { key: attributeValue[0][attribute], value: attributeValue }
+	})
 }

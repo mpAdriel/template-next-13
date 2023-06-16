@@ -21,10 +21,7 @@ export default function NotFound() {
 			>
 				<h2>🤕 404 🤕</h2>
 				<h4>¿Te perdiste?</h4>
-				<Link
-					className="btn btn-dark btn-glow p-3 px-5 mt-3"
-					href={Routing.home}
-				>
+				<Link className="btn btn-primary p-3 px-5 mt-3" href={Routing.home}>
 					Vuelve al inicio
 				</Link>
 			</section>
