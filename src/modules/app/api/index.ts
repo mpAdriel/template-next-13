@@ -1,0 +1,1 @@
+export { apiGetAppConfig } from './getAppConfig'

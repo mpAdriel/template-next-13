@@ -2,17 +2,19 @@ import { AxiosResponse } from 'axios'
 
 // actions
 import { api } from './api'
-import { apiPostRefreshToken } from '../login/api'
+import { apiPostRefreshToken } from '../auth/api'
+import { shutdown } from '../app/slices/actions'
 // interfaces
 import { IApi } from './interfaces'
 import { parseDataFromAPI } from '@/utils'
-import { ETags } from './enum'
+import { EModules, ETags } from './enum'
 
 export default async function Status<T, D>(
 	response: AxiosResponse<T>,
 	apiProps: IApi<T, D | undefined>
 ) {
-	const { callback, tag, verb, configVerb, dispatch, getState } = apiProps
+	const { callback, tag, verb, requestConfig, dispatch, getState, moduleName } =
+		apiProps
 	const parsedResponse = parseDataFromAPI<T>(response.data)
 
 	switch (response.status) {
@@ -27,19 +29,28 @@ export default async function Status<T, D>(
 			break
 
 		case 401:
-			if (tag === ETags.REFRESH_TOKEN) break
+			if (tag === ETags.REFRESH_TOKEN) {
+				await dispatch(shutdown())
+				break
+			}
+
+			if (moduleName === EModules.LOGIN) {
+				await callback.error(response.data)
+				break
+			}
+
 			await dispatch(
 				apiPostRefreshToken({
+					error: () => console.error('Failed to refresh token'),
 					success: async () =>
 						await api({
-							verb,
-							configVerb,
 							callback,
 							dispatch,
 							getState,
+							requestConfig,
 							tag: ETags.FROM_REFRESH_TOKEN,
+							verb,
 						}),
-					error: () => console.error('Failed to refresh token'),
 				})
 			)
 			break

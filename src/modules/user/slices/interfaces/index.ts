@@ -1,3 +1,4 @@
 import { IUserState } from './IUserState'
+import { TPayloadTokens } from './TPayloadTokens'
 
-export type { IUserState }
+export type { IUserState, TPayloadTokens }

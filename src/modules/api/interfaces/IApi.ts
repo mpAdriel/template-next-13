@@ -5,12 +5,13 @@ import { ETags, EVerbs } from '../enum'
 
 export interface IApi<T, D> {
 	verb: EVerbs
-	configVerb: IRequestConfig<D>
+	requestConfig: IRequestConfig<D>
 	callback: ICallBack<T>
 	dispatch: TDispatch
 	getState: TStore
 	tag?: ETags
 	setLoading?: (status: boolean) => {}
 	permissions?: string[]
-	module?: string
+	moduleName?: string
+	filter?: object
 }

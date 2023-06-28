@@ -2,21 +2,23 @@ import axios, { AxiosResponse } from 'axios'
 
 // interfaces
 import { IApi } from './interfaces'
+import { EVerbs } from './enum'
 // resources
 import Status from './Status'
-import { isDev, parseDataToAPI } from '@/utils'
+import { isDev, parseDataToAPI, parseObjectToFilter } from '@/utils'
 import { hasPermissions } from '../user/utils'
 
 export const api = async <T, D>(props: IApi<T, D | undefined>) => {
 	const {
 		verb,
-		configVerb,
+		requestConfig,
 		callback,
 		setLoading,
 		permissions = [],
 		getState,
+		filter,
 	} = props
-	let { url, config } = configVerb
+	let { url, config } = requestConfig
 
 	if (permissions) {
 		const userPermissions = getState().UserState.userData.permissions
@@ -32,19 +34,26 @@ export const api = async <T, D>(props: IApi<T, D | undefined>) => {
 		}
 	}
 
+	if (filter) {
+		const params = parseObjectToFilter(filter)
+
+		if (params.length > 0) url += '?' + params
+	}
+
 	if (setLoading) await setLoading(true)
 
-	const accessToken = '' // catch from corresponding slice
-	if (config?.headers === undefined) {
-		config = {
-			...config,
-			baseURL: process.env.BASE_URL_API || '',
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-				'Content-Type': 'application/json',
-			},
-		}
+	const accessToken = getState().UserState.accessToken
+	// config url and headers
+	if (!config?.baseURL) url = `api/${process.env.VERSION_API}/` + url
+	config = {
+		baseURL: process.env.BASE_URL_API || '',
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			'Content-Type': 'application/json',
+		},
+		...config,
 	}
+	if (requestConfig.noneAuth) delete config.headers?.Authorization
 
 	const fSuccess = async (response: AxiosResponse<T>) => {
 		if (isDev()) console.warn(`${url} => Response`, response)
@@ -60,18 +69,21 @@ export const api = async <T, D>(props: IApi<T, D | undefined>) => {
 
 	// remember ".finally(function(){})"
 
-	const body = parseDataToAPI(configVerb.data) as D
+	const body = parseDataToAPI(requestConfig.data) as D
 
-	if (verb === 'GET') {
+	if (verb === EVerbs.GET) {
 		await axios
-			.get(url, config)
+			.get(url, {
+				data: body,
+				...config,
+			})
 			.then(async function (response) {
 				await fSuccess(response)
 			})
 			.catch(async function (error) {
 				await fError(error)
 			})
-	} else if (verb === 'POST') {
+	} else if (verb === EVerbs.POST) {
 		await axios
 			.post(url, body, config)
 			.then(async function (response) {
@@ -80,27 +92,30 @@ export const api = async <T, D>(props: IApi<T, D | undefined>) => {
 			.catch(async function (error) {
 				await fError(error)
 			})
-	} else if (verb === 'PUT') {
+	} else if (verb === EVerbs.PUT) {
 		await axios
-			.put(url, config)
+			.put(url, body, config)
 			.then(async function (response) {
 				await fSuccess(response)
 			})
 			.catch(async function (error) {
 				await fError(error)
 			})
-	} else if (verb === 'DEL') {
+	} else if (verb === EVerbs.DEL) {
 		await axios
-			.delete(url, config)
+			.delete(url, {
+				data: body,
+				...config,
+			})
 			.then(async function (response) {
 				await fSuccess(response)
 			})
 			.catch(async function (error) {
 				await fError(error)
 			})
-	} else if (verb === 'PATCH') {
+	} else if (verb === EVerbs.PATCH) {
 		await axios
-			.patch(url, config)
+			.patch(url, body, config)
 			.then(async function (response) {
 				await fSuccess(response)
 			})

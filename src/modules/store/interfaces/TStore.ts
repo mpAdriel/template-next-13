@@ -1,8 +1,10 @@
 // interfaces
-import { ILoginState } from '@/modules/login/slices/interfaces'
+import { IAuthState } from '@/modules/auth/interfaces'
+import { IExampleState } from '@/modules/example/interfaces'
 import { IUserState } from '@/modules/user/slices/interfaces'
 
 export type TStore = () => {
-	LoginState: ILoginState
+	AuthState: IAuthState
 	UserState: IUserState
+	ExampleState: IExampleState
 }

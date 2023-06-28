@@ -9,9 +9,14 @@ import { Routing } from '@/router/routing'
 const HomeContainer = () => {
 	return (
 		<RootLayout>
-			<Link className="btn btn-primary p-3 px-5" href={Routing.login}>
-				Login
-			</Link>
+			<div className="d-grid gap-2">
+				<Link className="btn btn-primary p-3 px-5" href={Routing.login}>
+					Login
+				</Link>
+				<Link className="btn btn-info p-3 px-5" href={Routing.example}>
+					Example
+				</Link>
+			</div>
 		</RootLayout>
 	)
 }

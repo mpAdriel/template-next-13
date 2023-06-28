@@ -3,19 +3,21 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { persistReducer } from 'redux-persist'
 import logger from 'redux-logger'
 
-import LoginSlice from '../login/slices/LoginSlice'
 import UserSlice from '../user/slices/UserSlice'
+import AuthSlice from '../auth/slices/AuthSlice'
+import ExampleSlice from '../example/slices/ExampleSlice'
 
 const persistConfig = {
 	key: 'root',
 	storage,
-	// whitelist: ['LoginState'],
+	// whitelist: ['AuthState'],
 	blacklist: [],
 }
 
 const combinedReducers = combineReducers({
-	LoginState: LoginSlice,
+	AuthState: AuthSlice,
 	UserState: UserSlice,
+	ExampleState: ExampleSlice,
 })
 
 const rootReducer = (state: any, action: any) => {
