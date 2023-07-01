@@ -40,7 +40,7 @@ export default async function Status<T, D>(
 			}
 
 			await dispatch(
-				apiPostRefreshToken({
+				apiPostRefreshToken('users', {
 					error: () => console.error('Failed to refresh token'),
 					success: async () =>
 						await api({

@@ -26,7 +26,7 @@ export default function LoginContainer() {
 	}, [])
 
 	async function apiLogin() {
-		await dispatch(apiPostLogin())
+		await dispatch(apiPostLogin('users'))
 	}
 
 	const [submit, setSubmit] = useState(false)

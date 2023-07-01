@@ -10,7 +10,7 @@ import { api } from '@/modules/api/api'
 import { isDev } from '@/utils'
 
 export const apiPostSignup =
-	() => async (dispatch: TDispatch, getState: TStore) => {
+	(moduleName: string) => async (dispatch: TDispatch, getState: TStore) => {
 		const { isError } = await dispatch(signupValidation())
 
 		if (isError) return
@@ -37,7 +37,7 @@ export const apiPostSignup =
 					password: 'Qwerty1234',
 					username: 'User Smith',
 				},
-				url: 'users/auth/signup',
+				url: `${moduleName}/auth/signup`,
 			},
 			setLoading: async status =>
 				await dispatch(setSignup({ prop: 'isLoading', value: status })),

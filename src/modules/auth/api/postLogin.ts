@@ -11,7 +11,7 @@ import { api } from '@/modules/api/api'
 import { isDev } from '@/utils'
 
 export const apiPostLogin =
-	() => async (dispatch: TDispatch, getState: TStore) => {
+	(moduleName: string) => async (dispatch: TDispatch, getState: TStore) => {
 		const { isError } = await dispatch(loginValidation())
 
 		if (isError) return
@@ -34,7 +34,7 @@ export const apiPostLogin =
 					email: 'user@mail.com',
 					password: 'Qwerty1234',
 				},
-				url: 'users/auth/login',
+				url: `${moduleName}/auth/login`,
 			},
 			setLoading: async status =>
 				await dispatch(setLogin({ prop: 'isLoading', value: status })),

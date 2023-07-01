@@ -10,7 +10,7 @@ import { api } from '@/modules/api/api'
 import { isDev } from '@/utils'
 
 export const apiPostRefreshToken =
-	<T>(callback?: ICallBack<T>) =>
+	<T>(moduleName: string, callback?: ICallBack<T>) =>
 	async (dispatch: TDispatch, getState: TStore) => {
 		const refreshToken = getState().UserState.refreshToken
 
@@ -30,7 +30,7 @@ export const apiPostRefreshToken =
 			getState,
 			requestConfig: {
 				data: { refreshToken },
-				url: 'users/auth/refreshToken',
+				url: `${moduleName}/auth/refreshToken`,
 			},
 			tag: ETags.REFRESH_TOKEN,
 			verb: EVerbs.GET,
